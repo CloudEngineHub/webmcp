@@ -200,7 +200,7 @@ To <dfn>notify documents of a tool change</dfn> given a {{Document}} |tool owner
      1. If |targetDocument| is not [=allowed to use=] the "{{tools}}" feature, then
         [=iteration/continue=].
 
-     1. If [=tool is visible to an origin=] given |tool owner|'s [=Document/origin=], |exposed
+     1. If [=tool is exposed to an origin=] given |tool owner|'s [=Document/origin=], |exposed
         origins|, and |targetDocument|'s [=Document/origin=], then [=queue a global task=] on the
         [=webmcp task source=] given |targetDocument|'s [=relevant global object=] to [=fire an
         event=] named {{ModelContext/toolchange}} at |targetDocument|'s [=Document/associated
@@ -236,14 +236,14 @@ To <dfn>notify documents of a tool change</dfn> given a {{Document}} |tool owner
 </div>
 
 <div algorithm>
-To determine if a <dfn>tool is visible to an origin</dfn> given an [=origin=] |tool owner origin|,
-a [=list=] of [=origins=] |exposed origins|, and an [=origin=] |target origin|, run these steps:
+To determine if a <dfn>tool is exposed to an origin</dfn> given an [=origin=] |tool owner origin|,
+a [=list=] of [=origins=] |exposed origins|, and an [=origin=] |accessing origin|, run these steps:
 
-1. If |tool owner origin| is [=same origin=] with |target origin|, then return true.
+1. If |tool owner origin| is [=same origin=] with |accessing origin|, then return true.
 
-1. [=list/For each=] |origin| of |exposed origins|:
+1. [=list/For each=] |allowed origin| of |exposed origins|:
 
-     1. If |target origin| is [=same origin=] with |origin|, then return true.
+     1. If |accessing origin| is [=same origin=] with |allowed origin|, then return true.
 
 1. Return false.
 
